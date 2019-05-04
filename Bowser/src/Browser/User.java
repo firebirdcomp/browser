@@ -5,28 +5,30 @@
  */
 package Browser;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Felpi
  */
-public class Favorites {
-    private ArrayList<String> favorites = new ArrayList();
+public class User {
+    private String name;
     
-    
-    public void add()
+    public void register()
     {
         
     }
     
-    public void open()
+    public void login()
     {
         
     }
     
-    public String getFavorites()
+    public void setName(String _name)
     {
-        return "0";
+        name = _name;
+    }
+    
+    public String getName()
+    {
+        return name;
     }
 }

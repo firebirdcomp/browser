@@ -5,19 +5,27 @@
  */
 package Browser;
 
+import HTMLdownloader.Downloader;
+import Interpreter.Interpreter;
+
 /**
  *
  * @author Felpi
  */
 public class BrowerInterface extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Brower
-     */
+    Downloader downloader;
+    Interpreter interpreter;
+    
     public BrowerInterface() {
-        initComponents();
+        downloader = new Downloader();
+        initComponents(); 
+        interpreter = new Interpreter();
+        interpreter.Interpreter(downloader.DownloadPage(""));
+         
+        //System.out.println(downloader.DownloadPage("http://stackoverflow.com/"));
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
