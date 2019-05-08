@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Browser;
+package Interpreter;
 
 /**
  *
  * @author Felpi
  */
-public class NormalTab extends Tab{
-    public void saveInHistoric()
-    {
-        
-    }
+public class Atributtes {
+    public String atributte;
 }

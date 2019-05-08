@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Browser;
+package Interpreter;
 
 /**
  *
  * @author Felpi
  */
-public class AccountManager {
-    
+public class Text {
+    public String text;
 }

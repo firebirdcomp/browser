@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Browser;
+package Interpreter;
 
 import java.util.ArrayList;
 
@@ -11,22 +11,14 @@ import java.util.ArrayList;
  *
  * @author Felpi
  */
-public class Historic {
-    private ArrayList<String> historic = new ArrayList();
+public class HTMLnode {
+    public ArrayList<HTMLnode> children;
+    public HTMLnode father;
+    public ArrayList<Atributtes> atributtes;
+    public String tag;
     
-    public void add()
+    public HTMLnode(String tag)
     {
-        
-    }
-    
-    public void open()
-    {
-        
-    }
-    
-    public String getHistoric()
-    {
-        return "0";
+        this.tag = tag;
     }
 }
-
