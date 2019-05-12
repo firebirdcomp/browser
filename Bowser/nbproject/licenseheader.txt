@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Project by Firebird. All rigths reserved to Felpi and Luis.
+<#if licenseLast??>
+${licenseLast}
+</#if>
