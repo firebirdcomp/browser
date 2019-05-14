@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class Interpreter {    
     
     public ArrayList<HTMLnode> nodes = new ArrayList();
-    
+    public int actualLevel;    
     
     public void Interpreter(String html)
     {   
@@ -57,6 +57,5 @@ public class Interpreter {
     public String clearHTML(String html)
     {
         return html;
-    }
-    
+    }    
 }

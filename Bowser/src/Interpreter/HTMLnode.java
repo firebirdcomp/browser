@@ -16,6 +16,8 @@ public class HTMLnode {
     public HTMLnode father;
     public ArrayList<Atributtes> atributtes;
     public String tag;
+    public String content;
+    public int level;
     
     public HTMLnode(String tag)
     {
