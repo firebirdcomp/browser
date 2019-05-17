@@ -163,7 +163,7 @@ public class BrowserInterface extends javax.swing.JFrame {
        
         
         Interpreter interpreter = new Interpreter();
-        interpreter.generateTree("", null);
+        interpreter.Interpreter("");
 
         
     }//GEN-LAST:event_submitUrl
