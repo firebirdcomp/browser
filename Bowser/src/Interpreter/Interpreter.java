@@ -21,7 +21,6 @@ public class Interpreter {
     public void Interpreter(String html)
     {   
         html = this.clearHTML(html);
-        //testRegex(html);
         generateTree(html, null);         
     }
     
@@ -42,7 +41,7 @@ public class Interpreter {
         
         if(matcher.matches())
         {
-//            just daclaring variables to turn the code more readable
+//            just declaring variables to turn the code more readable
             tagName = matcher.group(2);
             closingTag = matcher.group(4);
             contentInsideTag = matcher.group(3);
@@ -61,26 +60,21 @@ public class Interpreter {
         
 //        verify if the tag don't has a father
         if (father == null) {
-            System.out.println("Stoped in first if");
             HTMLnode node = new HTMLnode(tagName);
             return generateTree(contentInsideTag, node);
         } else {
-            System.out.println("Stoped in first else");
             HTMLnode node = new HTMLnode(tagName);
             node.content = contentInsideTag;
             node.father = father;
-            father.children.add(node);
+            father.children.add(node);  //always return error ????
 //            verify if tag has brothers
             if ("".equals(over)) {
-//                verfiy if there is tags in content
-                System.out.println("Stoped in second if");
+//                verify if there is tags in content
                 if (contentInsideTag.matches("\\<(\\w+)\\>")) {
-                    System.out.println("Stoped in third if");
                     return generateTree(contentInsideTag, node);
                 }
             } else {
 //                remove the closing tag
-                System.out.println("Stoped in second else");
                 over = over.replaceAll(closingTag, "");
                 generateTree(over, father);
                 return generateTree(contentInsideTag, father);
