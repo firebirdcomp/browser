@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author Felpi
  */
 public class HTMLnode {
-    public ArrayList<HTMLnode> children = null;
+    public ArrayList<HTMLnode> children = new ArrayList();
     public HTMLnode father = null;
-    public ArrayList<Atributtes> atributtes = null;
+    public ArrayList<Atributtes> atributtes = new ArrayList();
     public String content;
     public String tag;
     public int level;

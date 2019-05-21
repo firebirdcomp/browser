@@ -66,7 +66,7 @@ public class Interpreter {
             HTMLnode node = new HTMLnode(tagName);
             node.content = contentInsideTag;
             node.father = father;
-            //father.children.add(node);  //always return error ????
+            father.children.add(node);  //always return error ????
 //            verify if tag has brothers
             if ("".equals(over)) {
 //                verify if there is tags in content
