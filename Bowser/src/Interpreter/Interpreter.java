@@ -16,14 +16,80 @@ import java.util.regex.Pattern;
 public class Interpreter {    
     
     public ArrayList<HTMLnode> nodes = new ArrayList();
-    
+    public int actualLevel;    
     
     public void Interpreter(String html)
     {   
+        html = this.clearHTML(html);
+        //testRegex(html);
         generateTree(html, null);         
     }
     
     public String generateTree(String html, HTMLnode father)
+    {        
+        Pattern pattern = Pattern.compile("(<(\\w+)>)(.+)(<\\/\\2>)(.*)");
+        Matcher matcher = pattern.matcher(html);
+        
+//        debug
+        System.out.println("****************************************************");
+        System.out.println("New iterration started");
+        System.out.println("current HTML: " + html);
+        
+        String tagName = "", 
+               closingTag = "", 
+               contentInsideTag = "", 
+               over = "";
+        
+        if(matcher.matches())
+        {
+//            just daclaring variables to turn the code more readable
+            tagName = matcher.group(2);
+            closingTag = matcher.group(4);
+            contentInsideTag = matcher.group(3);
+            over = matcher.group(5);
+
+//            eu tentando debugar os grupos - remover depois de pronto
+            System.out.println("tagName = " + tagName);
+            System.out.println("contentInsideTag = " + contentInsideTag);
+            System.out.println("closingTag = " + closingTag);
+            System.out.println("over = " + over);
+        }
+        else 
+        {
+            System.out.println("Nothing was matched");
+        }
+        
+//        verify if the tag don't has a father
+        if (father == null) {
+            System.out.println("Stoped in first if");
+            HTMLnode node = new HTMLnode(tagName);
+            return generateTree(contentInsideTag, node);
+        } else {
+            System.out.println("Stoped in first else");
+            HTMLnode node = new HTMLnode(tagName);
+            node.content = contentInsideTag;
+            node.father = father;
+            father.children.add(node);
+//            verify if tag has brothers
+            if ("".equals(over)) {
+//                verfiy if there is tags in content
+                System.out.println("Stoped in second if");
+                if (contentInsideTag.matches("\\<(\\w+)\\>")) {
+                    System.out.println("Stoped in third if");
+                    return generateTree(contentInsideTag, node);
+                }
+            } else {
+//                remove the closing tag
+                System.out.println("Stoped in second else");
+                over = over.replaceAll(closingTag, "");
+                generateTree(over, father);
+                return generateTree(contentInsideTag, father);
+            }
+        }
+        return "Something went wrong";
+    }
+    
+    public String clearHTML(String html)
     {
         html = "<html>\n" +
 "<head>\n" +
@@ -98,55 +164,13 @@ public class Interpreter {
 "    </ol>\n" +
 "</body>\n" +
 "</html> ";
-        
-//        remove comments from HTML
-        String _html = html.replaceAll("<!--\\s.*?-->", "");
+     
 //        remove new lines from HTML
-        _html = _html.replaceAll("\\n", "");
-        
-        Pattern pattern = Pattern.compile("(<(\\w+)>)(.+)(<\\/\\2>)(.*)");
-        Matcher matcher = pattern.matcher(_html);
-        
-//        just daclaring variables to turn the code more readable
-        String tagName = matcher.group(2);
-        String closingTag = matcher.group(4);
-        String contentInsideTag = matcher.group(3);
-        String over = matcher.group(5);
-        
-        //eu tentando debugar os grupos - remover depois de pronto
-        System.out.println("tagName = " + tagName);
-        System.out.println("contentInsideTag = " + contentInsideTag);
-        System.out.println("closingTag = " + closingTag);
-        System.out.println("over = " + over);
-        
-//        verify if the tag has a father
-        if (father != null) {
-            HTMLnode node = new HTMLnode(tagName);
-            return generateTree(contentInsideTag, node);
-        } else {
-            HTMLnode node = new HTMLnode(tagName);
-            node.content = contentInsideTag;
-            node.father = father;
-            father.children.add(node);
-//            verify if tag has brothers
-            if ("".equals(over)) {
-//                verfiy if there is tags in content
-                if (contentInsideTag.matches("\\<(\\w+)\\>")) {
-                    return generateTree(contentInsideTag, node);
-                }
-            } else {
-//                remove the closing tag
-                over = over.replaceAll(closingTag, "");
-                generateTree(over, father);
-                return generateTree(contentInsideTag, father);
-            }
-        }
-        return "Something went wrong";
-    }
-    
-    public String clearHTML(String html)
-    {
-        return html;
-    }
-    
+        String _html = html.replaceAll("\\n", "");
+            System.out.println("Removed new lines: " + _html);
+//        remove comments from HTML
+         _html = _html.replaceAll("<!--.*?-->", "");
+            System.out.println("Removed comentaries: " + _html);
+        return _html;
+    }    
 }
