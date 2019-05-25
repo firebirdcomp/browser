@@ -25,19 +25,36 @@ public class Interpreter {
     }
     
     public String generateTree(String html, HTMLnode father)
-    {        
-        Pattern pattern = Pattern.compile("(<(\\w+)>)(.+)(<\\/\\2>)(.*)");
-        Matcher matcher = pattern.matcher(html);
+    {                
+        String tagName = "", 
+               closingTag = "", 
+               contentInsideTag = "", 
+               over = "";        
         
 //        debug
         System.out.println("****************************************************");
         System.out.println("New iterration started");
         System.out.println("current HTML: " + html);
         
-        String tagName = "", 
-               closingTag = "", 
-               contentInsideTag = "", 
-               over = "";
+//        verify if has text before the tag, and remove if has
+        Pattern pattern2 = Pattern.compile("(.*?)(<(\\w+)>)(.+)(<\\/\\3>)(.*)");
+        Matcher matcher2 = pattern2.matcher(html);
+
+        if(matcher2.matches())
+        {
+            if(!"".equals(matcher2.group(1)))
+            {
+                System.out.println("*******A text before tag was founded*********");
+                Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
+                html = html.replace(matcher2.group(1), "");
+                System.out.println("Text created");
+                System.out.println("TEXT CONTENT: " + text.text);
+            }            
+        }
+        
+        //Matches the tag of HTML        
+        Pattern pattern = Pattern.compile("(<(\\w+)>)(.+)(<\\/\\2>)(.*)");
+        Matcher matcher = pattern.matcher(html);
         
         if(matcher.matches())
         {
@@ -51,39 +68,48 @@ public class Interpreter {
             System.out.println("tagName = " + tagName);
             System.out.println("contentInsideTag = " + contentInsideTag);
             System.out.println("closingTag = " + closingTag);
-            System.out.println("over = " + over);
+            System.out.println("over = " + over);            
         }
         else 
         {
-            System.out.println("Nothing was matched");
-        }
+//            this is a text node
+//            create a text object
+            System.out.println("*****This iteration just have a text*****");
+            Text text = new Text(html, father);
+            System.out.println("Text created");
+            System.out.println("TEXT CONTENT: " + text.text);
+        }   
         
 //        verify if the tag don't has a father
         if (father == null) {
-            HTMLnode node = new HTMLnode(tagName);
+            HTMLnode node = new HTMLnode(tagName, null);
             return generateTree(contentInsideTag, node);
         } else {
-            HTMLnode node = new HTMLnode(tagName);
+            HTMLnode node = new HTMLnode(tagName, father);
             node.content = contentInsideTag;
-            node.father = father;
-            father.children.add(node);  //always return error ????
+            father.children.add(node);
 //            verify if tag has brothers
             if ("".equals(over)) {
 //                verify if there is tags in content
-                Pattern pattern2= Pattern.compile("\\<(\\w+)\\>");
-                Matcher matcher2 = pattern.matcher(contentInsideTag);
-                if (matcher2.matches()) {
+                Pattern pattern3= Pattern.compile("\\<(\\w+)\\>");
+                Matcher matcher3 = pattern3.matcher(contentInsideTag);
+                if (matcher.matches()) {
                     return generateTree(contentInsideTag, node);
                 }
                 else
                 {
-                    //TODO
+                    if(!"".equals(over.replaceAll(" ", "")))
+                    {
+                        Text text = new Text(contentInsideTag, node);
+                        System.out.println("Other text was matched");
+                        System.out.println("Content inside text: " + text.text);
+                    }                    
                 }
             } else {
-//                remove the closing tag
+//                remove the closing tag                
                 over = over.replaceAll(closingTag, "");
                 generateTree(over, father);
-                return generateTree(contentInsideTag, father);
+                return generateTree(contentInsideTag, father);               
             }
         }
         return "Something went wrong";
@@ -91,7 +117,7 @@ public class Interpreter {
     
     public String clearHTML(String html)
     {
-        html = "<html><head><title></title></head><body><div><h1>TITULO</h1><p>TEXTO DENTRO<b>DO</b>PARAGRAFO</p></div></body></html>";
+        html = "<html><head><title>titulopagina</title></head><body><div><h1>TITULO</h1><p>TEXTO DENTRO<b>DO</b>PARAGRAFO</p></div></body></html>";
      
 //        remove new lines from HTML
         String _html = html.replaceAll("\\n", "");

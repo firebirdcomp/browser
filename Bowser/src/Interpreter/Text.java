@@ -9,6 +9,13 @@ package Interpreter;
  *
  * @author Felpi
  */
-public class Text {
+public class Text extends Node{
     public String text;
+    
+    
+    public Text(String content, Node father)
+    {
+        this.father = father;
+        text = content;
+    }
 }

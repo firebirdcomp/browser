@@ -9,6 +9,12 @@ package Interpreter;
  *
  * @author Felpi
  */
-public class Atributtes {
+public class Atributtes extends Node{
     public String atributte;
+    
+    public Atributtes(String atributte, Node father)
+    {
+        this.atributte = atributte;
+        this.father = father;
+    }
 }
