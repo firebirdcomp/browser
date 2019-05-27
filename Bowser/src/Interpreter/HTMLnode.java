@@ -11,16 +11,15 @@ import java.util.ArrayList;
  *
  * @author Felpi
  */
-public class HTMLnode {
+public class HTMLnode extends Node{
     public ArrayList<HTMLnode> children = new ArrayList();
-    public HTMLnode father = null;
     public ArrayList<Atributtes> atributtes = new ArrayList();
     public String content;
     public String tag;
-    public int level;
     
-    public HTMLnode(String tag)
+    public HTMLnode(String tag, Node father)
     {
         this.tag = tag;
+        this.father = father;
     }
 }
