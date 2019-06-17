@@ -15,18 +15,17 @@ import java.util.regex.Pattern;
  */
 public class Interpreter {    
     
-    public ArrayList<HTMLnode> nodes = new ArrayList();
-    public int actualLevel;    
+    public ArrayList<Node> nodes = new ArrayList();
+    public int actualLevel;   
     
     public void Interpreter(String html)
     {   
         html = this.clearHTML(html);
         generateTree(html, null);         
-    }
-    
+    }    
     
     public String generateTree(String html, HTMLnode father)
-    {                
+    {          
         String tagName = "", 
                closingTag = "", 
                contentInsideTag = "", 
@@ -78,6 +77,7 @@ public class Interpreter {
             //create a text object
             System.out.println("*****This iteration just have a text*****");
             Text text = new Text(html, father);
+            nodes.add(text);
             System.out.println("Text created");
             System.out.println("TEXT CONTENT: " + text.text);
         }   
@@ -88,6 +88,7 @@ public class Interpreter {
             return generateTree(contentInsideTag, node);
         } else {
             HTMLnode node = new HTMLnode(tagName, father);
+            nodes.add(node); 
             node.content = contentInsideTag;
             father.children.add(node);
             //verify if tag has brothers
@@ -113,10 +114,10 @@ public class Interpreter {
     {
         html = "<html><head><title>titulopagina</title></head><body><div><h1>TITULO</h1><p>TEXTO DENTRO<b>DO</b>PARAGRAFO</p></div></body></html>";
      
-//        remove new lines from HTML
+        //remove new lines from HTML
         String _html = html.replaceAll("\\n", "");
             System.out.println("Removed new lines: " + _html);
-//        remove comments from HTML
+        //remove comments from HTML
          _html = _html.replaceAll("<!--.*?-->", "");
             System.out.println("Removed comentaries: " + _html);
             

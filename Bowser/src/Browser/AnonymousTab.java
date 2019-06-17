@@ -10,5 +10,4 @@ package Browser;
  * @author Felpi
  */
 public class AnonymousTab extends Tab{
-    
 }
