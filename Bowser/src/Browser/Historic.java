@@ -19,14 +19,13 @@ public class Historic {
         
     }
     
-    public void open()
+    public ArrayList<String> getHistoric()
     {
-        
-    }
-    
-    public String getHistoric()
-    {
-        return "0";
+        historic.clear();
+        historic.add("Historico 1");
+        historic.add("Historico 2");
+        historic.add("Historico 3");
+        return historic;
     }
 }
 

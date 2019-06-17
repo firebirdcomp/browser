@@ -12,21 +12,19 @@ import java.util.ArrayList;
  * @author Felpi
  */
 public class Favorites {
-    private ArrayList<String> favorites = new ArrayList();
-    
+    private ArrayList<String> favorites = new ArrayList();    
     
     public void add()
     {
         
     }
     
-    public void open()
+    public ArrayList<String> getFavorites()
     {
-        
-    }
-    
-    public String getFavorites()
-    {
-        return "0";
+        favorites.clear();
+        favorites.add("Favorito 1");
+        favorites.add("Favorito 2");
+        favorites.add("Favorito 3");
+        return favorites;
     }
 }
