@@ -1,5 +1,6 @@
-package Browser;
+package Interface;
 
+import Browser.Historic;
 import java.util.ArrayList;
 
 /**

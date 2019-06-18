@@ -1,5 +1,6 @@
-package Browser;
+package Interface;
 
+import Browser.Favorites;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +17,7 @@ public class FavoriteWindow extends javax.swing.JPanel {
     public FavoriteWindow() {
         initComponents();
         Favorites favoritesClass = new Favorites();
-        favorites = favoritesClass.getFavorites();
-        
+        favorites = favoritesClass.getFavorites();        
         for(String a : favorites)
         {
             FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);

@@ -23,14 +23,14 @@ public class Render {
             
             if(node instanceof Text)
             {
-                output += "\nIs a text";
-                output += "\nContent: " + ((Text)node).text;
+                output += "\nisTEXT: ";
+                output += ((Text)node).text;
             }
             
             if(node instanceof HTMLnode)
             {                
-                output += "\nTag: " + ((HTMLnode)node).tag;
-                output += "\nContent: " + ((HTMLnode)node).content;                
+                output += "\nTAG: " + ((HTMLnode)node).tag;
+                output += "  CONTENT: " + ((HTMLnode)node).content;                
             }       
             sitePanel.setText(sitePanel.getText() + output);
         }

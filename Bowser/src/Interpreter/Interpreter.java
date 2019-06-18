@@ -46,6 +46,7 @@ public class Interpreter {
             {
                 System.out.println("*******A text before tag was founded*********");
                 Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
+                nodes.add(text);
                 html = html.replace(matcher2.group(1), "");
                 System.out.println("Text created");
                 System.out.println("TEXT CONTENT: " + text.text);
@@ -80,11 +81,13 @@ public class Interpreter {
             nodes.add(text);
             System.out.println("Text created");
             System.out.println("TEXT CONTENT: " + text.text);
+            return null;
         }   
         
         //verify if the tag don't has a father
         if (father == null) {
             HTMLnode node = new HTMLnode(tagName, null);
+            nodes.add(node);
             return generateTree(contentInsideTag, node);
         } else {
             HTMLnode node = new HTMLnode(tagName, father);
@@ -93,21 +96,20 @@ public class Interpreter {
             father.children.add(node);
             //verify if tag has brothers
             if ("".equals(over.trim())){
-                //verify if there is tags in content
-                
+                //verify if there is tags in content                
                 if (matcher.matches()) {
-                    //Tem uma tag no over
+                    //Has a tag in content
                     return generateTree(contentInsideTag, node);
                 }
             } else {
                 //remove the closing tag   
-                //Não existe over
+                //existe over
                 over = over.replaceAll(closingTag, "");
                 generateTree(over, father);
                 return generateTree(contentInsideTag, father);               
             }
         }
-        return "Something went wrong";
+        return null;
     }
     
     public String clearHTML(String html)
@@ -116,12 +118,13 @@ public class Interpreter {
      
         //remove new lines from HTML
         String _html = html.replaceAll("\\n", "");
-            System.out.println("Removed new lines: " + _html);
+        System.out.println("Removed new lines: " + _html);
+        
         //remove comments from HTML
-         _html = _html.replaceAll("<!--.*?-->", "");
-            System.out.println("Removed comentaries: " + _html);
+        _html = _html.replaceAll("<!--.*?-->", "");
+        System.out.println("Removed comentaries: " + _html);
             
-         _html = _html.replaceAll(" ", "");
+        _html = _html.replaceAll(" ", "");
         return _html;
     }    
 }
