@@ -1,6 +1,9 @@
 package Interface;
 
 import Browser.Historic;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,13 +19,23 @@ public class HistoricWindow extends javax.swing.JPanel {
      */
     public HistoricWindow() {
         initComponents();
-        Historic historic = new Historic();
-        histTest = historic.getHistoric();
+        Database database = new Database();
+        ResultSet rs = database.GetHistoricTable();
         
-        for(String a : histTest)
+        try {
+            while (rs.next()) {
+                HistoricTestPanel.setText(HistoricTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE"));
+            }
+        } 
+        catch(SQLException ex)
         {
-            HistoricTestPanel.setText(HistoricTestPanel.getText() + "\n" + a);
-        }        
+            System.out.println("Error: " + ex.getMessage());
+        }
+            
+            
+        
+           
     }
     
     ArrayList<String> histTest; 
@@ -54,20 +67,21 @@ public class HistoricWindow extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(TesteHistorico)
-                .addContainerGap(179, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(TesteHistorico))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TesteHistorico)
                 .addGap(15, 15, 15))
         );

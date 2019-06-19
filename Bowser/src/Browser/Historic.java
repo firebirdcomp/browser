@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Historic {
     private ArrayList<String> historic = new ArrayList();
     
-    public void add()
+    public void add(String title, String date)
     {
         
     }

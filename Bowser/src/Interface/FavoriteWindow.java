@@ -1,6 +1,9 @@
 package Interface;
 
 import Browser.Favorites;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +19,19 @@ public class FavoriteWindow extends javax.swing.JPanel {
      */
     public FavoriteWindow() {
         initComponents();
-        Favorites favoritesClass = new Favorites();
-        favorites = favoritesClass.getFavorites();        
-        for(String a : favorites)
+        Database database = new Database();
+        ResultSet rs = database.GetFavoritesTable();
+        
+        try {
+            while (rs.next()) {
+                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE"));
+            }
+        } 
+        catch(SQLException ex)
         {
-            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
-        }   
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
     
     ArrayList<String> favorites;
