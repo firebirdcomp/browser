@@ -52,6 +52,42 @@ public class Database {
         }        
     }   
     
+    public void AddFavorite(int user_id, String title, String date, String link)
+    {
+        String query = "INSERT INTO favoritos (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
+        "VALUES (" + user_id + ", '" + title + "', '" + 12/02/2019 + "', '" + link + "');";
+        
+        try 
+        {
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
+            Statement s = conn.createStatement(); 
+            s.executeQuery(query);
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    public void AddHistoric(int user_id, String title, String date, String link)
+    {
+        String query = "INSERT INTO favoritos (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
+        "VALUES (" + user_id + ", '" + title + "', '" + 12/02/2019 + "', '" + link + "');";
+        
+        try 
+        {
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
+            Statement s = conn.createStatement(); 
+            s.executeQuery(query);
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        
+    }
+    
     public Database()
     {
         try {
@@ -62,13 +98,6 @@ public class Database {
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
             Statement s = conn.createStatement();            
-            s.execute("SELECT * FROM usuario");
-            ResultSet rs = s.getResultSet();
-            while (rs.next()) {
-                System.out.println("Nome: "+rs.getString("NOME"));
-                System.out.println("Senha: "+rs.getString("SENHA"));
-                System.out.println("ID: "+rs.getString("ID"));
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -95,7 +124,8 @@ public class Database {
         FOREIGN KEY (user_id) REFERENCES usuario (id),
             user_id   INT NOT NULL, 
         title     VARCHAR(60),
-        dataHist  DATE 
+        dataHist  DATE,
+        linkHist  VARCHAR(100)
     );
 
     CREATE TABLE favoritos
@@ -106,6 +136,7 @@ public class Database {
         FOREIGN KEY (user_id) REFERENCES usuario (id),
             user_id   INT NOT NULL, 
         title     VARCHAR(60),
-        dataHist  DATE 
+        dataHist  DATE,
+        linkHist  VARCHAR(100)
     );
     /*/
