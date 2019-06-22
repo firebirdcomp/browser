@@ -5,13 +5,12 @@
  */
 package Interface;
 
+import Database.Database;
 import Interpreter.Interpreter;
 import Render.Render;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.tools.JavaFileManager.Location;
+
 
 /**
  *
@@ -24,6 +23,7 @@ public class BrowserInterface extends javax.swing.JFrame {
      */
     public BrowserInterface() {
         initComponents();
+        Database database = new Database();
     }
 
     /**

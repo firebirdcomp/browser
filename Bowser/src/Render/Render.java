@@ -33,10 +33,6 @@ public class Render {
                 output += "  CONTENT: " + ((HTMLnode)node).content;                
             }       
             sitePanel.setText(sitePanel.getText() + output);
-        }
-        
-    }
-    
-    
-    
+        }        
+    }   
 }

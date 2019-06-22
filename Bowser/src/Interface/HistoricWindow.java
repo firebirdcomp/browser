@@ -1,6 +1,9 @@
 package Interface;
 
 import Browser.Historic;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,13 +19,24 @@ public class HistoricWindow extends javax.swing.JPanel {
      */
     public HistoricWindow() {
         initComponents();
-        Historic historic = new Historic();
-        histTest = historic.getHistoric();
+        Database database = new Database();
+        ResultSet rs = database.GetHistoricTable();
         
-        for(String a : histTest)
+        try {
+            while (rs.next()) {
+                HistoricTestPanel.setText(HistoricTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE")+ 
+                "    " + rs.getString("LINKHIST"));
+            }
+        } 
+        catch(SQLException ex)
         {
-            HistoricTestPanel.setText(HistoricTestPanel.getText() + "\n" + a);
-        }        
+            System.out.println("Error: " + ex.getMessage());
+        }
+            
+            
+        
+           
     }
     
     ArrayList<String> histTest; 
@@ -36,16 +50,8 @@ public class HistoricWindow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TesteHistorico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         HistoricTestPanel = new javax.swing.JEditorPane();
-
-        TesteHistorico.setText("Teste");
-        TesteHistorico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TesteHistoricoActionPerformed(evt);
-            }
-        });
 
         jScrollPane1.setViewportView(HistoricTestPanel);
 
@@ -53,34 +59,20 @@ public class HistoricWindow extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(TesteHistorico)
-                .addContainerGap(179, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TesteHistorico)
-                .addGap(15, 15, 15))
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TesteHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TesteHistoricoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TesteHistoricoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane HistoricTestPanel;
-    private javax.swing.JButton TesteHistorico;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
