@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class HTMLnode extends Node{
     public ArrayList<Node> children = new ArrayList();
-    public ArrayList<Atributtes> atributtes = new ArrayList();
     public String content;
     public String tag;
     

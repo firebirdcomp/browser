@@ -25,7 +25,14 @@ public class Interpreter {
     }    
     
     public String generateTree(String html, HTMLnode father)
-    {          
+    {       
+        Atributtes atrib = null;
+        
+        if(father != null)
+        {
+            atrib = new Atributtes(father.tag,father); 
+        }               
+        
         String tagName = "", 
                closingTag = "", 
                contentInsideTag = "", 
@@ -46,6 +53,7 @@ public class Interpreter {
             {
                 System.out.println("*******A text before tag was founded*********");
                 Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
+                text.atributtes.add(atrib);
                 nodes.add(text);
                 father.children.add(text);
                 html = html.replace(matcher2.group(1), "");
@@ -78,7 +86,8 @@ public class Interpreter {
             //this is a text node
             //create a text object
             System.out.println("*****This iteration just have a text*****");
-            Text text = new Text(html, father);
+            Text text = new Text(html, father);            
+            text.atributtes.add(atrib);
             nodes.add(text);
             father.children.add(text);
             System.out.println("Text created");
