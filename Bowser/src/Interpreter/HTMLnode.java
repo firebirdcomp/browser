@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Felpi
  */
 public class HTMLnode extends Node{
-    public ArrayList<HTMLnode> children = new ArrayList();
+    public ArrayList<Node> children = new ArrayList();
     public ArrayList<Atributtes> atributtes = new ArrayList();
     public String content;
     public String tag;

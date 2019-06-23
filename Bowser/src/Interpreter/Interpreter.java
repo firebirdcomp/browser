@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class Interpreter {    
     
     public ArrayList<Node> nodes = new ArrayList();
-    public int actualLevel;   
+    public Node firstNode;
     
     public void Interpreter(String html)
     {   
@@ -47,6 +47,7 @@ public class Interpreter {
                 System.out.println("*******A text before tag was founded*********");
                 Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
                 nodes.add(text);
+                father.children.add(text);
                 html = html.replace(matcher2.group(1), "");
                 System.out.println("Text created");
                 System.out.println("TEXT CONTENT: " + text.text);
@@ -79,6 +80,7 @@ public class Interpreter {
             System.out.println("*****This iteration just have a text*****");
             Text text = new Text(html, father);
             nodes.add(text);
+            father.children.add(text);
             System.out.println("Text created");
             System.out.println("TEXT CONTENT: " + text.text);
             return null;
@@ -87,6 +89,7 @@ public class Interpreter {
         //verify if the tag don't has a father
         if (father == null) {
             HTMLnode node = new HTMLnode(tagName, null);
+            firstNode = node;
             nodes.add(node);
             return generateTree(contentInsideTag, node);
         } else {
