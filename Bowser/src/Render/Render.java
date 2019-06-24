@@ -54,7 +54,7 @@ public class Render {
                 }
                 else
                 {
-                    sitePanel.setText("PLACEHOLDERTITLE: " + ((Text)node).text + "\n" + sitePanel.getText());
+                    sitePanel.setText("PLACEHOLDERTITLE: " + ((Text)node).text + "\n\n" + sitePanel.getText());
                 }                
             }
             
