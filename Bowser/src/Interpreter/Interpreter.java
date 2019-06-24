@@ -17,6 +17,7 @@ public class Interpreter {
     
     public ArrayList<Node> nodes = new ArrayList();
     public Node firstNode;
+    public String lastTag;
     
     public void Interpreter(String html)
     {   
@@ -26,11 +27,7 @@ public class Interpreter {
     
     public String generateTree(String html, HTMLnode father)
     {       
-        Atributtes atrib = null;        
-        if(father != null)
-        {
-            atrib = new Atributtes(father.tag,father); 
-        }               
+        Atributtes atrib = null;                    
         
         String tagName, closingTag, contentInsideTag, over;        
         
@@ -49,6 +46,8 @@ public class Interpreter {
             {
                 System.out.println("*******A text before tag was founded*********");
                 Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
+                atrib = new Atributtes(lastTag,father);
+                lastTag = "";
                 text.atributtes.add(atrib);
                 nodes.add(text);
                 father.children.add(text);
@@ -78,6 +77,8 @@ public class Interpreter {
             //create a text object
             System.out.println("This iteration just have a text");
             Text text = new Text(html, father);            
+            atrib = new Atributtes(lastTag,father);
+            lastTag = "";
             text.atributtes.add(atrib);
             nodes.add(text);
             father.children.add(text);
@@ -94,6 +95,7 @@ public class Interpreter {
             return generateTree(contentInsideTag, node);
         } else {
             HTMLnode node = new HTMLnode(tagName, father);
+            lastTag = tagName;
             nodes.add(node); 
             node.content = contentInsideTag;
             father.children.add(node);
