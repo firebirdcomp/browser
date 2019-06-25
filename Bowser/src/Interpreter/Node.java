@@ -3,6 +3,8 @@
  */
 package Interpreter;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Felpi
@@ -10,4 +12,5 @@ package Interpreter;
 public abstract class Node {
     public Node father = null;
     public int level;
+    public ArrayList<Atributtes> atributtes = new ArrayList();
 }

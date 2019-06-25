@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
 public class Interpreter {    
     
     public ArrayList<Node> nodes = new ArrayList();
-    public int actualLevel;   
+    public Node firstNode;
+    public String lastTag;
     
     public void Interpreter(String html)
     {   
@@ -25,11 +26,10 @@ public class Interpreter {
     }    
     
     public String generateTree(String html, HTMLnode father)
-    {          
-        String tagName = "", 
-               closingTag = "", 
-               contentInsideTag = "", 
-               over = "";        
+    {       
+        Atributtes atrib = null;                    
+        
+        String tagName, closingTag, contentInsideTag, over;        
         
         //debug
         System.out.println("****************************************************");
@@ -46,10 +46,15 @@ public class Interpreter {
             {
                 System.out.println("*******A text before tag was founded*********");
                 Text text = new Text(matcher2.group(1).replaceAll("<\\w+>", ""), father);
+                atrib = new Atributtes(lastTag,father);
+                lastTag = "";
+                text.atributtes.add(atrib);
                 nodes.add(text);
+                father.children.add(text);
                 html = html.replace(matcher2.group(1), "");
                 System.out.println("Text created");
                 System.out.println("TEXT CONTENT: " + text.text);
+                return generateTree(html, father);
             }            
         }
         
@@ -66,19 +71,17 @@ public class Interpreter {
             tagName = matcher.group(2);
             closingTag = matcher.group(4);
             contentInsideTag = matcher.group(3);
-            over = matcher.group(5);
-
-            //eu tentando debugar os grupos - remover depois de pronto
-            System.out.println("tagName = " + tagName);
-            System.out.println("contentInsideTag = " + contentInsideTag);
-            System.out.println("closingTag = " + closingTag);
-            System.out.println("over = " + over);            
+            over = matcher.group(5);          
         } else {
             //this is a text node
             //create a text object
-            System.out.println("*****This iteration just have a text*****");
-            Text text = new Text(html, father);
+            System.out.println("This iteration just have a text");
+            Text text = new Text(html, father);            
+            atrib = new Atributtes(lastTag,father);
+            lastTag = "";
+            text.atributtes.add(atrib);
             nodes.add(text);
+            father.children.add(text);
             System.out.println("Text created");
             System.out.println("TEXT CONTENT: " + text.text);
             return null;
@@ -87,10 +90,12 @@ public class Interpreter {
         //verify if the tag don't has a father
         if (father == null) {
             HTMLnode node = new HTMLnode(tagName, null);
+            firstNode = node;
             nodes.add(node);
             return generateTree(contentInsideTag, node);
         } else {
             HTMLnode node = new HTMLnode(tagName, father);
+            lastTag = tagName;
             nodes.add(node); 
             node.content = contentInsideTag;
             father.children.add(node);
@@ -105,8 +110,8 @@ public class Interpreter {
                 //remove the closing tag   
                 //existe over
                 over = over.replaceAll(closingTag, "");
-                generateTree(over, father);
-                return generateTree(contentInsideTag, father);               
+                generateTree(contentInsideTag, father);     
+                return generateTree(over, father);                         
             }
         }
         return null;
