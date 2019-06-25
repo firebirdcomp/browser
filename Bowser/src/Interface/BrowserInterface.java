@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import Database.Database;
+import Interpreter.Interpreter;
+import Render.Render;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
@@ -27,7 +30,8 @@ public class BrowserInterface extends javax.swing.JFrame {
         tab.tabBlock.setName("novo nome");
 //        Adciniona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
-        
+       
+        Database database = new Database();
     }
 
     /**

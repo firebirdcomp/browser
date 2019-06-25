@@ -1,6 +1,8 @@
 package Interface;
 
-import Browser.Favorites;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +18,20 @@ public class FavoriteWindow extends javax.swing.JPanel {
      */
     public FavoriteWindow() {
         initComponents();
-        Favorites favoritesClass = new Favorites();
-        favorites = favoritesClass.getFavorites();        
-        for(String a : favorites)
+        Database database = new Database();
+        ResultSet rs = database.GetFavoritesTable();
+        
+        try {
+            while (rs.next()) {
+                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE") + 
+                "    " + rs.getString("LINKHIST"));
+            }
+        } 
+        catch(SQLException ex)
         {
-            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
-        }   
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
     
     ArrayList<String> favorites;
@@ -35,11 +45,8 @@ public class FavoriteWindow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTest = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         FavoritesTestPanel = new javax.swing.JEditorPane();
-
-        btnTest.setText("Teste");
 
         jScrollPane1.setViewportView(FavoritesTestPanel);
 
@@ -47,30 +54,20 @@ public class FavoriteWindow extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(btnTest)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnTest)
-                .addGap(37, 37, 37))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane FavoritesTestPanel;
-    private javax.swing.JButton btnTest;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

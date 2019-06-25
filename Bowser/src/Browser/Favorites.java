@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Favorites {
     private ArrayList<String> favorites = new ArrayList();    
     
-    public void add()
+    public void add(String title, String date)
     {
         
     }
