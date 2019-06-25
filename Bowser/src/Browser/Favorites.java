@@ -22,9 +22,9 @@ public class Favorites {
     public ArrayList<String> getFavorites()
     {
         favorites.clear();
-        favorites.add("Favorito 1");
-        favorites.add("Favorito 2");
-        favorites.add("Favorito 3");
+        favorites.add("Favorito 1         www.teste.com.br           15-05-2019");
+        favorites.add("Favorito 2         www.teste.com.br           15-05-2019");
+        favorites.add("Favorito 3         www.teste.com.br           15-05-2019");
         return favorites;
     }
 }

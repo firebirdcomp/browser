@@ -89,19 +89,19 @@ public class Database {
     }
     
     public Database()
-    {
+    {        
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException cnfe) {
             System.err.println("Derby driver not found.");
         }
+        
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
-            Statement s = conn.createStatement();            
+            Statement s = conn.createStatement();   
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        
+        }        
     }
 }
 

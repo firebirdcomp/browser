@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Browser.Favorites;
 import Database.Database;
 import Interpreter.Interpreter;
 import Render.Render;
@@ -26,7 +27,7 @@ public class BrowserInterface extends javax.swing.JFrame {
 
 //        Create a new tab
         TabInterface tab = new TabInterface();
-//        Mudar nome da tab depois decriada
+//        Mudar nome da tab depois de criada
         tab.tabBlock.setName("novo nome");
 //        Adciniona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
@@ -129,13 +130,13 @@ public class BrowserInterface extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNewTab)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnConta)
                         .addComponent(btnHistorico)
                         .addComponent(btnFavoritos)
-                        .addComponent(closeTab)))
+                        .addComponent(closeTab))
+                    .addComponent(btnNewTab))
                 .addGap(2, 2, 2))
         );
 
@@ -182,6 +183,8 @@ public class BrowserInterface extends javax.swing.JFrame {
         TabInterface tab = new TabInterface();
 //        Adciniona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
+        Favorites fav = new Favorites();
+        fav.add(null, null);
     }//GEN-LAST:event_createNewTab
 
     private void closeTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeTab
