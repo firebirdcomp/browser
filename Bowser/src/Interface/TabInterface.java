@@ -3,6 +3,8 @@
  */
 package Interface;
 
+import Interpreter.Interpreter;
+import Render.Render;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.Random;
@@ -37,11 +39,18 @@ public class TabInterface extends javax.swing.JPanel {
 //        Init editor panel
         JEditorPane editorPanel = new JEditorPane();
         editorPanel.setSize(1366,700);
-        editorPanel.setText("asaskdjbnasidbiasdbiasdi\n iaudhuiashdiuashduih\n\n\naiudashdidf");
         JScrollPane scrollPane = new JScrollPane(editorPanel);
+
+//      Criar arvore
+        Interpreter interpreter = new Interpreter();
+        interpreter.Interpreter("");
+
+//      Renderiza arvore
+        Render render = new Render();
+        render.startRender(interpreter, editorPanel, tabBlock);
+        
         
         tabBlock.add(scrollPane);
-
     }
 
     /**

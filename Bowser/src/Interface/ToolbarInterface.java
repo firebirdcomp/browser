@@ -33,7 +33,6 @@ public class ToolbarInterface extends javax.swing.JPanel {
         Toolbar = new javax.swing.JPanel();
         url = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        favorite = new javax.swing.JToggleButton();
 
         setMinimumSize(new java.awt.Dimension(0, 45));
         setPreferredSize(new java.awt.Dimension(1366, 47));
@@ -56,13 +55,6 @@ public class ToolbarInterface extends javax.swing.JPanel {
             }
         });
 
-        favorite.setText("Favorite");
-        favorite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                favoriteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout ToolbarLayout = new javax.swing.GroupLayout(Toolbar);
         Toolbar.setLayout(ToolbarLayout);
         ToolbarLayout.setHorizontalGroup(
@@ -72,17 +64,14 @@ public class ToolbarInterface extends javax.swing.JPanel {
                 .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 1137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(btnSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(favorite)
-                .addContainerGap())
+                .addContainerGap(188, Short.MAX_VALUE))
         );
         ToolbarLayout.setVerticalGroup(
             ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ToolbarLayout.createSequentialGroup()
                 .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch)
-                    .addComponent(favorite))
+                    .addComponent(btnSearch))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -107,23 +96,18 @@ public class ToolbarInterface extends javax.swing.JPanel {
 
         //Renderiza a arvore
         Render render = new Render();
-//        render.startRender(interpreter, sitePanel);
-
+        //render.startRender(interpreter, sitePanel);
+        
     }//GEN-LAST:event_btnSearchsubmitUrl
 
     private void urlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_urlActionPerformed
 
-    private void favoriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favoriteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_favoriteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Toolbar;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JToggleButton favorite;
     private javax.swing.JTextField url;
     // End of variables declaration//GEN-END:variables
 }

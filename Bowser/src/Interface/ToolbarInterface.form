@@ -52,9 +52,7 @@
                   <Component id="url" min="-2" pref="1137" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
-                  <Component id="favorite" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="188" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -64,7 +62,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="url" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="favorite" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
@@ -92,14 +89,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchsubmitUrl"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="favorite">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Favorite"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="favoriteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

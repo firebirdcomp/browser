@@ -1,5 +1,6 @@
 package Interface;
 
+import Browser.Favorites;
 import Database.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,21 +18,32 @@ public class FavoriteWindow extends javax.swing.JPanel {
      * Creates new form FavoritesWindow
      */
     public FavoriteWindow() {
-        initComponents();
-        Database database = new Database();
-        ResultSet rs = database.GetFavoritesTable();
+        initComponents();    
         
-        try {
-            while (rs.next()) {
-                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
-                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE") + 
-                "    " + rs.getString("LINKHIST"));
-            }
-        } 
-        catch(SQLException ex)
+        
+        Favorites favoritesClass = new Favorites();
+        favorites = favoritesClass.getFavorites();        
+        for(String a : favorites)
         {
-            System.out.println("Error: " + ex.getMessage());
-        }
+            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
+        }   
+
+        
+        
+//      TODO proxima semana pegar favoritos do banco
+//        Database database = new Database();
+//        ResultSet rs = database.GetFavoritesTable();
+//        try {
+//            while (rs.next()) {
+//                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
+//                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE") + 
+//                "    " + rs.getString("LINKHIST"));
+//            }
+//        } 
+//        catch(SQLException ex)
+//        {
+//            System.out.println("Error: " + ex.getMessage());
+//        }
     }
     
     ArrayList<String> favorites;
