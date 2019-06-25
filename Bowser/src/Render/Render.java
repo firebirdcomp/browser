@@ -30,39 +30,79 @@ public class Render {
     {
         String output = "";
         boolean write = true;
-        
-        if(node.atributtes.get(0).atributte.contains("title"))
-        {         
-            sitePanel.setText("PLACEHOLDERTITLE: " + ((Text)node).text + "\n\n" + sitePanel.getText());
-            
-        }
-        else
-        {
-            for(Atributtes a : node.atributtes)
+      
+        for(Atributtes a : node.atributtes)
+        {            
+            if(a.atributte.contains(Tags.title.toString()))
+            {         
+                sitePanel.setText("<tituloPagina> " + ((Text)node).text + " <tituloPagina>\n\n" + sitePanel.getText());
+            }
+
+            if(a.atributte.contains(Tags.p.toString()))
             {
-                if(a.atributte.contains(Tags.p.toString()))
-                {
-                    sitePanel.setText(sitePanel.getText() + "\n");
-                }
-                
-                if(a.atributte.contains(Tags.br.toString()))
-                {
-                    sitePanel.setText(sitePanel.getText() + "\n");
-                }
-                
-                if(a.atributte.contains(Tags.b.toString()))
-                {
-                    sitePanel.setText(sitePanel.getText() + " (BOLD " + ((Text)node).text + " /BOLD) ");
-                    write = false;
-                }
+                sitePanel.setText(sitePanel.getText() + "\n");
+            }
+
+            if(a.atributte.contains(Tags.br.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + "\n");
+            }
+
+            if(a.atributte.contains(Tags.b.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <bold> " + ((Text)node).text + " </bold> ");
+                write = false;
+            }
+
+            if(a.atributte.contains(Tags.h1.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo> " + ((Text)node).text + " </titulo> ");
+                write = false;
             }
             
-            if(write)
-            {  
-                sitePanel.setText(sitePanel.getText() + ((Text)node).text);
+            if(a.atributte.contains(Tags.h2.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo2> " + ((Text)node).text + " </titulo2> ");
+                write = false;
             }
             
-        }      
+            if(a.atributte.contains(Tags.h3.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo3> " + ((Text)node).text + " </titulo3> ");
+                write = false;
+            }
+            
+            if(a.atributte.contains(Tags.h4.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo4> " + ((Text)node).text + " </titulo4> ");
+                write = false;
+            }
+            
+            if(a.atributte.contains(Tags.h5.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo5> " + ((Text)node).text + " </titulo5> ");
+                write = false;
+            }
+            
+            if(a.atributte.contains(Tags.h6.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <titulo6> " + ((Text)node).text + " </titulo6> ");
+                write = false;
+            }
+            
+            if(a.atributte.contains(Tags.div.toString()))
+            {
+                sitePanel.setText(sitePanel.getText() + " <div> " + ((Text)node).text);
+                write = false;
+            }
+        }
+
+        if(write)
+        {  
+            sitePanel.setText(sitePanel.getText() + ((Text)node).text);
+        }
+            
+              
     }
     
     public void render(Node father, JEditorPane sitePanel)
