@@ -119,8 +119,22 @@ public class Interpreter {
     
     public String clearHTML(String html)
     {
-        html = "<html><head><title>titulopagina</title></head><body><div><h1>TITULO</h1><p>TEXTO DENTRO<b>DO</b>PARAGRAFO</p></div></body></html>";
-     
+        html = 
+    "<html> " +
+    "<head> " +
+    "    <title>Titulo_Da_Pagina</title> " +
+    "</head> " +
+    "<body> " +
+    "    <div> " +
+    "        <h1>TITULOGRANDÃO</h1>" +
+    "        <b>Texto_Negrito</b> " +
+    "        <p>Paragrafo</p> " +
+    "        <h6>TituloNãoTãoGrandão</h6>" +
+    "        <i>Texto_Italico</i> " +
+    "    </div> " +
+    "</body> " +
+    "</html> ";
+                
         //remove new lines from HTML
         String _html = html.replaceAll("\\n", "");
         System.out.println("Removed new lines: " + _html);
@@ -129,6 +143,7 @@ public class Interpreter {
         _html = _html.replaceAll("<!--.*?-->", "");
         System.out.println("Removed comentaries: " + _html);
             
+        //remove linhas em branco
         _html = _html.replaceAll(" ", "");
         return _html;
     }    

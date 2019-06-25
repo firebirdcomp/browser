@@ -47,7 +47,7 @@ public class TabInterface extends javax.swing.JPanel {
 
 //      Renderiza arvore
         Render render = new Render();
-        render.startRender(interpreter, editorPanel);
+        render.startRender(interpreter, editorPanel, tabBlock);
         
         
         tabBlock.add(scrollPane);

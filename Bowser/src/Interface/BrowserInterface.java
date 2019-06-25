@@ -7,8 +7,6 @@ package Interface;
 
 import Browser.Favorites;
 import Database.Database;
-import Interpreter.Interpreter;
-import Render.Render;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
@@ -27,8 +25,6 @@ public class BrowserInterface extends javax.swing.JFrame {
 
 //        Create a new tab
         TabInterface tab = new TabInterface();
-//        Mudar nome da tab depois de criada
-        tab.tabBlock.setName("novo nome");
 //        Adciniona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
        
