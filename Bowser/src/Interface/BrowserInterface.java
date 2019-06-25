@@ -5,13 +5,9 @@
  */
 package Interface;
 
-import Interpreter.Interpreter;
-import Render.Render;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.tools.JavaFileManager.Location;
+
 
 /**
  *
@@ -24,6 +20,14 @@ public class BrowserInterface extends javax.swing.JFrame {
      */
     public BrowserInterface() {
         initComponents();
+
+//        Create a new tab
+        TabInterface tab = new TabInterface();
+//        Mudar nome da tab depois decriada
+        tab.tabBlock.setName("novo nome");
+//        Adciniona a tab à lista de tabs
+        Tabs.add(tab.tabBlock);
+        
     }
 
     /**
@@ -36,170 +40,157 @@ public class BrowserInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         Tabs = new javax.swing.JTabbedPane();
-        Tab = new javax.swing.JPanel();
-        Toolbar = new javax.swing.JPanel();
-        btnBack = new javax.swing.JButton();
-        btnForward = new javax.swing.JButton();
-        url = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnNewTab = new javax.swing.JButton();
         btnConta = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
         btnFavoritos = new javax.swing.JButton();
-        content = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        sitePanel = new javax.swing.JEditorPane();
+        closeTab = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+        setMinimumSize(new java.awt.Dimension(784, 0));
+        setPreferredSize(new java.awt.Dimension(768, 480));
 
         Tabs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Tabs.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        Tabs.setMinimumSize(new java.awt.Dimension(0, 0));
+        Tabs.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        btnBack.setText("‹");
-
-        btnForward.setText("›");
-
-        btnSearch.setText("→");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnNewTab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnNewTab.setText("Nova Guia");
+        btnNewTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNewTab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitUrl(evt);
+                createNewTab(evt);
             }
         });
 
+        btnConta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnConta.setText("Conta");
+        btnConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContaActionPerformed(evt);
+                btnCountActionPerformed(evt);
             }
         });
 
-        btnHistorico.setText("Historico");
-        btnHistorico.setActionCommand("Histórico");
+        btnHistorico.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnHistorico.setActionCommand("Históric");
+        btnHistorico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorico.setLabel("Histórico");
         btnHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistoricoActionPerformed(evt);
             }
         });
 
+        btnFavoritos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnFavoritos.setText("Favoritos");
+        btnFavoritos.setActionCommand("Meus Favoritos");
+        btnFavoritos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFavoritos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFavoritosActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout ToolbarLayout = new javax.swing.GroupLayout(Toolbar);
-        Toolbar.setLayout(ToolbarLayout);
-        ToolbarLayout.setHorizontalGroup(
-            ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ToolbarLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnForward)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearch)
+        closeTab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        closeTab.setText("Close Tab");
+        closeTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeTab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeTab(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNewTab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(btnHistorico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        ToolbarLayout.setVerticalGroup(
-            ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ToolbarLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(ToolbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnForward)
-                    .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch)
-                    .addComponent(btnConta)
-                    .addComponent(btnHistorico)
-                    .addComponent(btnFavoritos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(closeTab)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        content.setBackground(new java.awt.Color(204, 204, 204));
-
-        jScrollPane1.setViewportView(sitePanel);
-
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewTab)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnConta)
+                        .addComponent(btnHistorico)
+                        .addComponent(btnFavoritos)
+                        .addComponent(closeTab)))
+                .addGap(2, 2, 2))
         );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout TabLayout = new javax.swing.GroupLayout(Tab);
-        Tab.setLayout(TabLayout);
-        TabLayout.setHorizontalGroup(
-            TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Toolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        TabLayout.setVerticalGroup(
-            TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TabLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(Toolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        Tabs.addTab("tab3", Tab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tabs)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Tabs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tabs)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        Tabs.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContaActionPerformed
-
-    private void submitUrl(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitUrl
-        //Cria a estrutura de arvores
-        Interpreter interpreter = new Interpreter();
-        interpreter.Interpreter("");
-        
-        //Renderiza a arvore
-        Render render = new Render();
-        render.startRender(interpreter, sitePanel);
-    }//GEN-LAST:event_submitUrl
-
     private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
         //Cria um frame na tela com o historico
         JFrame frame = new JFrame("Historic");
-        HistoricWindow historico = new HistoricWindow();            
+        HistoricWindow historico = new HistoricWindow();
         frame.getContentPane().add(historico, BorderLayout.CENTER);
-        frame.pack();       
+        frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_btnHistoricoActionPerformed
 
     private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
         //Cria um frame na tela com os favoritos
         JFrame frame = new JFrame("Favorites");
-        FavoriteWindow faboriteWindow = new FavoriteWindow();            
-        frame.getContentPane().add(faboriteWindow, BorderLayout.CENTER);
+        FavoriteWindow favoriteWindow = new FavoriteWindow();
+        frame.getContentPane().add(favoriteWindow, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_btnFavoritosActionPerformed
+
+    private void createNewTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTab
+        TabInterface tab = new TabInterface();
+//        Adciniona a tab à lista de tabs
+        Tabs.add(tab.tabBlock);
+    }//GEN-LAST:event_createNewTab
+
+    private void closeTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeTab
+        int index = Tabs.getSelectedIndex();
+        Tabs.remove(index);
+    }//GEN-LAST:event_closeTab
+
+    private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
+         //Cria um frame na tela para acessar a conta
+        CountWindow countFrame = new CountWindow();
+        countFrame.pack();
+        countFrame.setVisible(true);
+    }//GEN-LAST:event_btnCountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,18 +229,12 @@ public class BrowserInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Tab;
     private javax.swing.JTabbedPane Tabs;
-    private javax.swing.JPanel Toolbar;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConta;
     private javax.swing.JButton btnFavoritos;
-    private javax.swing.JButton btnForward;
     private javax.swing.JButton btnHistorico;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JPanel content;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JEditorPane sitePanel;
-    private javax.swing.JTextField url;
+    private javax.swing.JButton btnNewTab;
+    private javax.swing.JButton closeTab;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
