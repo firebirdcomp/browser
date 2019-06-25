@@ -187,9 +187,11 @@ public class BrowserInterface extends javax.swing.JFrame {
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
          //Cria um frame na tela para acessar a conta
+        JFrame frame = new JFrame("Conta");
         CountWindow countFrame = new CountWindow();
-        countFrame.pack();
-        countFrame.setVisible(true);
+        frame.getContentPane().add(countFrame, BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_btnCountActionPerformed
 
     /**
