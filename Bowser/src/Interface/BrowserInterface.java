@@ -179,8 +179,6 @@ public class BrowserInterface extends javax.swing.JFrame {
         TabInterface tab = new TabInterface();
 //        Adciniona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
-        Favorites fav = new Favorites();
-        fav.add(null, null);
     }//GEN-LAST:event_createNewTab
 
     private void closeTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeTab

@@ -55,37 +55,35 @@ public class Database {
     public void AddFavorite(int user_id, String title, String date, String link)
     {
         String query = "INSERT INTO favoritos (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
-        "VALUES (" + user_id + ", '" + title + "', '" + 12/02/2019 + "', '" + link + "');";
+        "VALUES (1, '" + title + "', '2019-01-01 00:00:00', '" + link + "')";
         
         try 
         {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
             Statement s = conn.createStatement(); 
-            s.executeQuery(query);
+            s.executeUpdate(query);
         } 
         catch (SQLException ex) 
         {
             ex.printStackTrace();
-        }
-        
+        }  
     }
     
     public void AddHistoric(int user_id, String title, String date, String link)
     {
-        String query = "INSERT INTO favoritos (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
-        "VALUES (" + user_id + ", '" + title + "', '" + 12/02/2019 + "', '" + link + "');";
+        String query = "INSERT INTO historico (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
+        "VALUES (" + user_id + ", '" + title + "', '2019-01-01 00:00:00', '" + link + "')";
         
         try 
         {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
             Statement s = conn.createStatement(); 
-            s.executeQuery(query);
+            s.executeUpdate(query);
         } 
         catch (SQLException ex) 
         {
             ex.printStackTrace();
-        }
-        
+        }        
     }
     
     public Database()
@@ -98,7 +96,9 @@ public class Database {
         
         try {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
-            Statement s = conn.createStatement();   
+            Statement s = conn.createStatement();  
+            //usuario padrao para cada sessão de teste
+            s.executeUpdate("INSERT INTO USUARIO (NOME, SENHA) VALUES ('Padrao', '123')");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }        

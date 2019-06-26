@@ -5,6 +5,7 @@
  */
 package Browser;
 
+import Database.Database;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 public class Historic {
     private ArrayList<String> historic = new ArrayList();
     
-    public void add(String title, String date)
+    public void add(String title, String date, String link, int user_Id)
     {
-        
+        Database db = new Database();
+        db.AddHistoric(user_Id, title, date, link);
     }
     
     public ArrayList<String> getHistoric()

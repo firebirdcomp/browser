@@ -21,31 +21,28 @@ public class HistoricWindow extends javax.swing.JPanel {
         initComponents();
 
         Historic historic = new Historic();
-        histTest = historic.getHistoric();
+        historic.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);
+        //histTest = historic.getHistoric();
         
-        for(String a : histTest)
-        {
-            HistoricTestPanel.setText(HistoricTestPanel.getText() + "\n" + a);
-        }  
+        //for(String a : histTest)
+        //{
+        //    HistoricTestPanel.setText(HistoricTestPanel.getText() + "\n" + a);
+        //}  
 
-//        Database database = new Database();
-//        ResultSet rs = database.GetHistoricTable();
-//        
-//        try {
-//            while (rs.next()) {
-//                HistoricTestPanel.setText(HistoricTestPanel.getText() + 
-//                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE")+ 
-//                "    " + rs.getString("LINKHIST"));
-//            }
-//        } 
-//        catch(SQLException ex)
-//        {
-//            System.out.println("Error: " + ex.getMessage());
-//        }
-            
-            
+        Database database = new Database();
+        ResultSet rs = database.GetHistoricTable();
         
-           
+        try {
+            while (rs.next()) {
+                HistoricTestPanel.setText(HistoricTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE")+ 
+                "    " + rs.getString("LINKHIST"));
+            }
+        } 
+        catch(SQLException ex)
+        {
+            System.out.println("Error: " + ex.getMessage());
+        }          
     }
     
     ArrayList<String> histTest; 

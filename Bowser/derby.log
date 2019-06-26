@@ -1,7 +1,7 @@
-Tue Jun 25 16:33:35 BRT 2019 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Wed Jun 26 20:25:06 BRT 2019 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Tue Jun 25 16:33:36 BRT 2019:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-016b-9021-1482-00007133a485
+Wed Jun 26 20:25:06 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-016b-961b-64af-00007133a485
 no diretório de banco de dados /home/felpi/Área de Trabalho/browser/Bowser/BancoDeDados 
 
 java.vendor=AdoptOpenJDK

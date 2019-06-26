@@ -5,6 +5,7 @@
  */
 package Browser;
 
+import Database.Database;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 public class Favorites {
     private ArrayList<String> favorites = new ArrayList();    
     
-    public void add(String title, String date)
+    public void add(String title, String date, String link, int id)
     {
-        
+        Database db = new Database();
+        db.AddFavorite(id, title, date, link);
     }
     
     public ArrayList<String> getFavorites()
