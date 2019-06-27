@@ -35,7 +35,6 @@ public class Interpreter {
         System.out.println("****************************************************");
         System.out.println("New iterration started");
         System.out.println("current HTML: " + html);
-        
         //verify if has text before the tag
         Pattern pattern2 = Pattern.compile("(.*?)(<(\\w+)>)(.+)(<\\/\\3>)(.*)");
         Matcher matcher2 = pattern2.matcher(html);

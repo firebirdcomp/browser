@@ -91,11 +91,11 @@ public class ToolbarInterface extends javax.swing.JPanel {
 
     private void btnSearchsubmitUrl(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchsubmitUrl
         //Cria a estrutura de arvores
-        Interpreter interpreter = new Interpreter();
-        interpreter.Interpreter("");
+        //Interpreter interpreter = new Interpreter();
+        //interpreter.Interpreter("");
 
         //Renderiza a arvore
-        Render render = new Render();
+        //Render render = new Render();
         //render.startRender(interpreter, sitePanel);
         
     }//GEN-LAST:event_btnSearchsubmitUrl

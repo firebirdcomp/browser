@@ -20,8 +20,7 @@ public class HistoricWindow extends javax.swing.JPanel {
     public HistoricWindow() {
         initComponents();
 
-        Historic historic = new Historic();
-        historic.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);
+        
         //histTest = historic.getHistoric();
         
         //for(String a : histTest)
@@ -69,10 +68,10 @@ public class HistoricWindow extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

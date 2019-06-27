@@ -72,7 +72,7 @@ public class Database {
     public void AddHistoric(int user_id, String title, String date, String link)
     {
         String query = "INSERT INTO historico (USER_ID, TITLE, DATAHIST, LINKHIST)\n" +
-        "VALUES (" + user_id + ", '" + title + "', '2019-01-01 00:00:00', '" + link + "')";
+        "VALUES (1, '" + title + "', '2019-01-01 00:00:00', '" + link + "')";
         
         try 
         {

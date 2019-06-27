@@ -28,7 +28,7 @@ public class FavoriteWindow extends javax.swing.JPanel {
 //            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
 //        }   
         
-        favorites.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);       
+        //favorites.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);       
         
 //      TODO proxima semana pegar favoritos do banco
         Database database = new Database();
