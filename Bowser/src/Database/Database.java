@@ -30,7 +30,7 @@ public class Database {
         }
         catch(SQLException ex)
         {
-            ex.printStackTrace();   
+            System.out.println("Error sql in select from historic: " + ex.getMessage()); 
             return null;
         }        
     }
@@ -47,7 +47,7 @@ public class Database {
         }
         catch(SQLException ex)
         {
-            ex.printStackTrace();   
+            System.out.println("Error sql select from favoritos");   
             return null;
         }        
     }   
@@ -65,7 +65,7 @@ public class Database {
         } 
         catch (SQLException ex) 
         {
-            ex.printStackTrace();
+            System.out.println("Error sql inserir favoritos: " + ex.getMessage());
         }  
     }
     
@@ -82,7 +82,7 @@ public class Database {
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error sql:" + ex.getMessage());
+            System.out.println("Error sql inserir historico:" + ex.getMessage());
         }        
     }
     
@@ -132,7 +132,7 @@ public class Database {
                             "    )");           
             s.executeUpdate("INSERT INTO USUARIO (NOME, SENHA) VALUES ('Padrao', '123')");
         } catch (SQLException ex) {
-            System.out.println("Error sql: " + ex.getMessage());
+            System.out.println("Error sql criar tabelas iniciais: " + ex.getMessage());
         }
     }
 }

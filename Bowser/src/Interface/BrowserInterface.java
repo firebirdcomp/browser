@@ -23,11 +23,12 @@ public class BrowserInterface extends javax.swing.JFrame {
     public BrowserInterface() {
         initComponents();
 
-//        Create a new tab
+        //Create a new tab
         TabInterface tab = new TabInterface();
-//        Adciniona a tab à lista de tabs
+        //Adiciona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
        
+        //inicia a database criando suas tabelas pelo contrutor
         Database database = new Database();
     }
 
@@ -177,7 +178,7 @@ public class BrowserInterface extends javax.swing.JFrame {
 
     private void createNewTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTab
         TabInterface tab = new TabInterface();
-//        Adciniona a tab à lista de tabs
+        //Adiciona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
     }//GEN-LAST:event_createNewTab
 
@@ -187,7 +188,7 @@ public class BrowserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_closeTab
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
-         //Cria um frame na tela para acessar a conta
+        //Cria um frame na tela para acessar a conta
         JFrame frame = new JFrame("Conta");
         CountWindow countFrame = new CountWindow();
         frame.getContentPane().add(countFrame, BorderLayout.CENTER);

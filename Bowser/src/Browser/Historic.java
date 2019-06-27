@@ -24,9 +24,9 @@ public class Historic {
     public ArrayList<String> getHistoric()
     {
         historic.clear();
-        historic.add("Historico 1         www.teste.com.br           15-05-2019");
-        historic.add("Historico 2         www.teste.com.br           15-05-2019");
-        historic.add("Historico 3         www.teste.com.br           15-05-2019");
+//        historic.add("Historico 1         www.teste.com.br           15-05-2019");
+//        historic.add("Historico 2         www.teste.com.br           15-05-2019");
+//        historic.add("Historico 3         www.teste.com.br           15-05-2019");
         return historic;
     }
 }

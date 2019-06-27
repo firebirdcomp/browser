@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=4.15.0-51-generic
 derby.system.home=/home/felpi/Área de Trabalho/browser/Bowser
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Jun 26 21:17:58 BRT 2019: Shutting down Derby engine
