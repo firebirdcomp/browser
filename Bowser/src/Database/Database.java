@@ -82,7 +82,7 @@ public class Database {
         } 
         catch (SQLException ex) 
         {
-            ex.printStackTrace();
+            System.out.println("Error sql:" + ex.getMessage());
         }        
     }
     
@@ -98,10 +98,42 @@ public class Database {
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoDeDados;");
             Statement s = conn.createStatement();  
             //usuario padrao para cada sessão de teste
+            s.executeUpdate("    CREATE TABLE usuario" +
+                            "    (" +
+                            "        nome      VARCHAR(30), " +
+                            "        senha     VARCHAR(20), " +
+                            "        id      INT not null primary key " +
+                            "        GENERATED ALWAYS AS IDENTITY " +
+                            "        (START WITH 1, INCREMENT BY 1) " +
+                            "    )");
+            
+            s.executeUpdate("    CREATE TABLE historico " +
+                            "    ( " +
+                            "            id          INT not null primary key " +
+                            "                        GENERATED ALWAYS AS IDENTITY " +
+                            "                        (START WITH 1, INCREMENT BY 1), " +
+                            "        FOREIGN KEY (user_id) REFERENCES usuario (id), " +
+                            "            user_id   INT NOT NULL, " +
+                            "        title     VARCHAR(60), " +
+                            "        dataHist  DATE, " +
+                            "        linkHist  VARCHAR(100) " +
+                            "    ) ");
+                            
+            s.executeUpdate("    CREATE TABLE favoritos" +
+                            "    (" +
+                            "            id_fav          INT not null primary key " +
+                            "                        GENERATED ALWAYS AS IDENTITY " +
+                            "                        (START WITH 1, INCREMENT BY 1), " +
+                            "        FOREIGN KEY (user_id) REFERENCES usuario (id), " +
+                            "            user_id   INT NOT NULL, " +
+                            "        title     VARCHAR(60), " +
+                            "        dataHist  DATE, " +
+                            "        linkHist  VARCHAR(100) " +
+                            "    )");           
             s.executeUpdate("INSERT INTO USUARIO (NOME, SENHA) VALUES ('Padrao', '123')");
         } catch (SQLException ex) {
-            ex.printStackTrace();
-        }        
+            System.out.println("Error sql: " + ex.getMessage());
+        }
     }
 }
 
