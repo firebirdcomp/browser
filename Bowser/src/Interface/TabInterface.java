@@ -3,10 +3,9 @@
  */
 package Interface;
 
+import Browser.Historic;
 import Interpreter.Interpreter;
 import Render.Render;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.Random;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
@@ -48,6 +47,9 @@ public class TabInterface extends javax.swing.JPanel {
 //      Renderiza arvore
         Render render = new Render();
         render.startRender(interpreter, editorPanel, tabBlock);
+        
+        Historic historic = new Historic();
+        historic.add("Historico", "01-06-2019", "www.historicoTeste.com.br" , 1);
         
         
         tabBlock.add(scrollPane);

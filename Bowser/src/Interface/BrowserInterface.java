@@ -6,6 +6,7 @@
 package Interface;
 
 import Browser.Favorites;
+import Browser.Historic;
 import Database.Database;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -23,11 +24,12 @@ public class BrowserInterface extends javax.swing.JFrame {
     public BrowserInterface() {
         initComponents();
 
-//        Create a new tab
+        //Create a new tab
         TabInterface tab = new TabInterface();
-//        Adciniona a tab à lista de tabs
+        //Adiciona a tab à lista de tabs
         Tabs.add(tab.tabBlock);
        
+        //inicia a database criando suas tabelas pelo contrutor
         Database database = new Database();
     }
 
@@ -46,7 +48,8 @@ public class BrowserInterface extends javax.swing.JFrame {
         btnConta = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
         btnFavoritos = new javax.swing.JButton();
-        closeTab = new javax.swing.JButton();
+        btnCloseTab = new javax.swing.JButton();
+        btnAddFav = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -96,12 +99,20 @@ public class BrowserInterface extends javax.swing.JFrame {
             }
         });
 
-        closeTab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        closeTab.setText("Close Tab");
-        closeTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        closeTab.addActionListener(new java.awt.event.ActionListener() {
+        btnCloseTab.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnCloseTab.setText("Fechar Tab");
+        btnCloseTab.setActionCommand("CloseTab");
+        btnCloseTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCloseTab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeTab(evt);
+                btnCloseTab(evt);
+            }
+        });
+
+        btnAddFav.setText("Add aos Favoritos");
+        btnAddFav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFavActionPerformed(evt);
             }
         });
 
@@ -119,7 +130,9 @@ public class BrowserInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(closeTab)
+                .addComponent(btnCloseTab)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddFav)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,7 +144,8 @@ public class BrowserInterface extends javax.swing.JFrame {
                         .addComponent(btnConta)
                         .addComponent(btnHistorico)
                         .addComponent(btnFavoritos)
-                        .addComponent(closeTab))
+                        .addComponent(btnCloseTab)
+                        .addComponent(btnAddFav))
                     .addComponent(btnNewTab))
                 .addGap(2, 2, 2))
         );
@@ -177,25 +191,37 @@ public class BrowserInterface extends javax.swing.JFrame {
 
     private void createNewTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTab
         TabInterface tab = new TabInterface();
-//        Adciniona a tab à lista de tabs
-        Tabs.add(tab.tabBlock);
-        Favorites fav = new Favorites();
-        fav.add(null, null);
+        //Adiciona a tab à lista de tabs
+        Tabs.add(tab.tabBlock);        
     }//GEN-LAST:event_createNewTab
 
-    private void closeTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeTab
+    private void btnCloseTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseTab
         int index = Tabs.getSelectedIndex();
         Tabs.remove(index);
-    }//GEN-LAST:event_closeTab
+        Historic historic = new Historic();
+        historic.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);
+    }//GEN-LAST:event_btnCloseTab
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCountActionPerformed
-         //Cria um frame na tela para acessar a conta
+        //Cria um frame na tela para acessar a conta
         JFrame frame = new JFrame("Conta");
         CountWindow countFrame = new CountWindow();
         frame.getContentPane().add(countFrame, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_btnCountActionPerformed
+
+    private void btnAddFavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFavActionPerformed
+        //adiciona aba atual aos favoritos
+        
+        //Pega aba atual
+        //Pega hora atual
+        //Pega usuario atual
+        //Pega titulo atual
+        
+        Favorites fav = new Favorites();
+        fav.add("Actual Title", "2019-01-01 00:00:00" , "www.pudim.com.br" , 1);
+    }//GEN-LAST:event_btnAddFavActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,11 +261,12 @@ public class BrowserInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Tabs;
+    private javax.swing.JButton btnAddFav;
+    private javax.swing.JButton btnCloseTab;
     private javax.swing.JButton btnConta;
     private javax.swing.JButton btnFavoritos;
     private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnNewTab;
-    private javax.swing.JButton closeTab;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

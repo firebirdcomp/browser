@@ -21,29 +21,29 @@ public class FavoriteWindow extends javax.swing.JPanel {
         initComponents();    
         
         
-        Favorites favoritesClass = new Favorites();
-        favorites = favoritesClass.getFavorites();        
-        for(String a : favorites)
-        {
-            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
-        }   
-
+        Favorites favorites = new Favorites();
+//        favorites = favoritesClass.getFavorites();        
+//        for(String a : favorites)
+//        {
+//            FavoritesTestPanel.setText(FavoritesTestPanel.getText() + "\n" + a);
+//        }   
         
+        //favorites.add("TituloTeste", "01-06-2019", "www.teste.com.br" , 1);       
         
 //      TODO proxima semana pegar favoritos do banco
-//        Database database = new Database();
-//        ResultSet rs = database.GetFavoritesTable();
-//        try {
-//            while (rs.next()) {
-//                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
-//                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE") + 
-//                "    " + rs.getString("LINKHIST"));
-//            }
-//        } 
-//        catch(SQLException ex)
-//        {
-//            System.out.println("Error: " + ex.getMessage());
-//        }
+        Database database = new Database();
+        ResultSet rs = database.GetFavoritesTable();
+        try {
+            while (rs.next()) {
+                FavoritesTestPanel.setText(FavoritesTestPanel.getText() + 
+                "\n" + rs.getString("DATAHIST") + "   " + rs.getString("TITLE") + 
+                "    " + rs.getString("LINKHIST"));
+            }
+        } 
+        catch(SQLException ex)
+        {
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
     
     ArrayList<String> favorites;
