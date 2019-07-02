@@ -6,10 +6,16 @@ package Interface;
 import Browser.Historic;
 import Interpreter.Interpreter;
 import Render.Render;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.Random;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -31,28 +37,25 @@ public class TabInterface extends javax.swing.JPanel {
         int number = rand.nextInt(50);
         tabBlock.setName("Nova Guia"+number);
         
-//        Init toolbar and add to the panel
+//      Init toolbar and add to the panel
         ToolbarInterface toolbar = new ToolbarInterface();
-        tabBlock.add(toolbar);
+        tabBlock.add(toolbar);        
         
-//        Init editor panel
-        JEditorPane editorPanel = new JEditorPane();
-        editorPanel.setSize(1366,700);
-        JScrollPane scrollPane = new JScrollPane(editorPanel);
-
+//      init mainPanel
+        JPanel mainPanel = new JPanel();
+        tabBlock.add(mainPanel);        
+        
 //      Criar arvore
         Interpreter interpreter = new Interpreter();
         interpreter.Interpreter("");
 
 //      Renderiza arvore
         Render render = new Render();
-        render.startRender(interpreter, editorPanel, tabBlock);
+        render.startRender(interpreter, mainPanel, tabBlock);
         
         Historic historic = new Historic();
         historic.add("Historico", "01-06-2019", "www.historicoTeste.com.br" , 1);
-        
-        
-        tabBlock.add(scrollPane);
+       
     }
 
     /**
@@ -70,11 +73,11 @@ public class TabInterface extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 768, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 317, Short.MAX_VALUE)
+            .addGap(0, 525, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

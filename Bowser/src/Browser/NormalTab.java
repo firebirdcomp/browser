@@ -5,13 +5,5 @@
  */
 package Browser;
 
-/**
- *
- * @author Felpi
- */
 public class NormalTab extends Tab{
-    public void saveInHistoric()
-    {
-        
-    }
 }

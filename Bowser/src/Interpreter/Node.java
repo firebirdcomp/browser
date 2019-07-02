@@ -5,10 +5,6 @@ package Interpreter;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Felpi
- */
 public abstract class Node {
     public Node father = null;
     public int level;

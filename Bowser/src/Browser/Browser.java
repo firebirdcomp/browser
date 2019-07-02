@@ -7,10 +7,6 @@ package Browser;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Felpi
- */
 public class Browser {
     private ArrayList<Tab> tabs = new ArrayList<>();
     private Favorites favorites;

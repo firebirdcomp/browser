@@ -5,10 +5,6 @@
  */
 package Browser;
 
-/**
- *
- * @author Felpi
- */
 public class User {
     private String name;
     

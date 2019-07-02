@@ -9,12 +9,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author Felpi
- */
-public class Interpreter {    
-    
+public class Interpreter {     
     public ArrayList<Node> nodes = new ArrayList();
     public Node firstNode;
     public String lastTag;
@@ -31,11 +26,12 @@ public class Interpreter {
         
         String tagName, closingTag, contentInsideTag, over;        
         
-        //debug
+        //Debug
         System.out.println("****************************************************");
         System.out.println("New iterration started");
         System.out.println("current HTML: " + html);
-        //verify if has text before the tag
+        
+        //Verifica se a texto depois da Tag
         Pattern pattern2 = Pattern.compile("(.*?)(<(\\w+)>)(.+)(<\\/\\3>)(.*)");
         Matcher matcher2 = pattern2.matcher(html);
 
@@ -57,23 +53,17 @@ public class Interpreter {
             }            
         }
         
-        //TODO verificar se a tag fecha
-        //TODO pegar atributos na regex e adicionar ao node
-        
-        //Matches the tag of HTML  
+        //Verifica se tem tag
         Pattern pattern = Pattern.compile("(<(\\w+)>)(.+)(<\\/\\2>)(.*)");
         Matcher matcher = pattern.matcher(html);
         
-        //if has tag
         if(matcher.matches()) {
-            //just declaring variables to turn the code more readable
             tagName = matcher.group(2);
             closingTag = matcher.group(4);
             contentInsideTag = matcher.group(3);
             over = matcher.group(5);          
         } else {
-            //this is a text node
-            //create a text object
+            //Cria um objeto de texto
             System.out.println("This iteration just have a text");
             Text text = new Text(html, father);            
             atrib = new Atributtes(lastTag,father);
@@ -86,7 +76,7 @@ public class Interpreter {
             return null;
         }   
         
-        //verify if the tag don't has a father
+        //Verifica se tem pai, se não tiver é a tag HTML
         if (father == null) {
             HTMLnode node = new HTMLnode(tagName, null);
             firstNode = node;
@@ -98,16 +88,15 @@ public class Interpreter {
             nodes.add(node); 
             node.content = contentInsideTag;
             father.children.add(node);
-            //verify if tag has brothers
+            
+            //Verifica se tem irmãos
             if ("".equals(over.trim())){
-                //verify if there is tags in content                
+                //verifica se tem tag ainda no html dentro da tag              
                 if (matcher.matches()) {
-                    //Has a tag in content
                     return generateTree(contentInsideTag, node);
                 }
             } else {
-                //remove the closing tag   
-                //existe over
+                //existe html alem da tag selecionada
                 over = over.replaceAll(closingTag, "");
                 generateTree(contentInsideTag, father);     
                 return generateTree(over, father);                         
