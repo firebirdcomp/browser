@@ -10,8 +10,7 @@ package Interpreter;
  * @author Felpi
  */
 public class Text extends Node{
-    public String text;
-    
+    public String text;    
     
     public Text(String content, Node father)
     {

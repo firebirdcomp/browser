@@ -9,10 +9,17 @@ import Interpreter.Interpreter;
 import Interpreter.Node;
 import Interpreter.Tags;
 import Interpreter.Text;
-import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.text.Highlighter;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -22,15 +29,15 @@ public class Render {
     
     String tabName;
     
-    public void startRender(Interpreter interpreter, JEditorPane sitePanel, JPanel tab)
+    public void startRender(Interpreter interpreter, JPanel sitePanel, JPanel tab)
     {
         render(interpreter.firstNode, sitePanel);    
         tab.setName(tabName);
     }
     
-    private void verifyText(Node node, JEditorPane sitePanel)
-    {
-        String output = "";
+    private void verifyText(Node node, JPanel sitePanel)
+    {    
+        
         boolean write = true;
       
         for(Atributtes a : node.atributtes)
@@ -38,81 +45,109 @@ public class Render {
             System.out.println("Contem tag: " + a.atributte.toString());            
             write = true;        
             
+//            Titulo
             if(a.atributte.contains(Tags.title.toString()))
             {         
-                //sitePanel.setText("<tituloPagina> " + ((Text)node).text + " <tituloPagina>\n\n" + sitePanel.getText());
                 tabName = ((Text)node).text;
                 write = false;
             }
+//            Paragrafo
             else if(a.atributte.contains(Tags.p.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "\n" + ((Text)node).text + "\n");
+                JTextArea t = new JTextArea();
+                t.setText("\n" + ((Text)node).text + "\n");
+                sitePanel.add(t);
                 write = false;
             }
             else if(a.atributte.contains(Tags.br.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "\n" + ((Text)node).text + "\n");
+                JTextArea t = new JTextArea();
+                t.setText("\n" + ((Text)node).text + "\n");
+                sitePanel.add(t);
                 write = false;
             }
             else if(a.atributte.contains(Tags.b.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "<bold>" + ((Text)node).text + "</bold>");
+                JTextArea t = new JTextArea();                
+                t.setText("bold" + ((Text)node).text + "bold");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.i.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "<italico>" + ((Text)node).text + "</italico>");
+                JTextArea t = new JTextArea();
+                t.setText("italico" + ((Text)node).text + "italico");
+                sitePanel.add(t);
                 write = false;
             }
             else if(a.atributte.contains(Tags.h1.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "<titulo1>" + ((Text)node).text + "</titulo1>");
+                JTextArea t = new JTextArea();                
+                t.setText("titulo1" + ((Text)node).text + "titulo1");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.h2.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + " <titulo2>" + ((Text)node).text + "</titulo2> ");
+                JTextArea t = new JTextArea();
+                t.setText("titulo2" + ((Text)node).text + "titulo2");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.h3.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + " <titulo3>" + ((Text)node).text + "</titulo3> ");
+                JTextArea t = new JTextArea();
+                t.setText("titulo3" + ((Text)node).text + "titulo3");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.h4.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + " <titulo4>" + ((Text)node).text + "</titulo4> ");
+                JTextArea t = new JTextArea();
+                t.setText("titulo4" + ((Text)node).text + "titulo4");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.h5.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + " <titulo5>" + ((Text)node).text + "</titulo5> ");
+                JTextArea t = new JTextArea();
+                t.setText("titulo5" + ((Text)node).text + "titulo5");
+                sitePanel.add(t);
                 write = false;
             }            
             else if(a.atributte.contains(Tags.h6.toString()))
             {
-                sitePanel.setText(sitePanel.getText() + "<titulo6>" + ((Text)node).text + "</titulo6>");
+                JTextArea t = new JTextArea();
+                t.setText("titulo6" + ((Text)node).text + "titulo6");
+                sitePanel.add(t);
                 write = false;
+                //do nothing
             }            
             else if(a.atributte.contains(Tags.div.toString()))
             {
                 write = false;
-                //do nothing
+                //do nothing for now
+            }
+            else if(a.atributte.contains(Tags.a.toString()))
+            {
+                write = false;
+                //do nothing for now
             }
             else
             {
-                sitePanel.setText(sitePanel.getText() + "\n" + ((Text)node).text + "\n");
                 write = false;
             }
         }
 
         if(write)
-        {  
-            sitePanel.setText(sitePanel.getText() + ((Text)node).text);
+        {              
+            JTextArea t = new JTextArea();
+            t.setText("\n" + ((Text)node).text + "\n");
+            sitePanel.add(t);
         }    
     }
     
-    public void render(Node father, JEditorPane sitePanel)
+    public void render(Node father, JPanel sitePanel)
     {           
         for(Node node : ((HTMLnode)father).children)
         {           

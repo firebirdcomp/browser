@@ -5,18 +5,9 @@
  */
 package Browser;
 
-/**
- *
- * @author Felpi
- */
 public abstract class Tab {
     private String name;
     private String url;
-    
-    public void closeTab()
-    {
-        
-    }
     
     public void setName(String _name)
     {

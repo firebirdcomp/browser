@@ -11,20 +11,12 @@ import Database.Database;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
-
-/**
- *
- * @author Felpi
- */
 public class BrowserInterface extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Brower
-     */
     public BrowserInterface() {
         initComponents();
 
-        //Create a new tab
+        //Cria uma nova tab
         TabInterface tab = new TabInterface();
         //Adiciona a tab à lista de tabs
         Tabs.add(tab.tabBlock);

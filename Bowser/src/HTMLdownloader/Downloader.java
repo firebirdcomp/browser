@@ -12,14 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
-
-/**
- *
- * @author Felpi
- */
-public class Downloader {
-    
+public class Downloader {    
     public String lastPageContent;
     
     public String DownloadPage(String URL)
